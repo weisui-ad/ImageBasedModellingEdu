@@ -22,9 +22,13 @@ ImageBasedModellingEdu2.0 是用于深蓝学院基于图像的三维模型重建
  ...
  
 2.执行
+
     git clone https://github.com/weisui-ad/ImageBasedModellingEdu.git
+    
     cd ~/ImageBasedModellingEdu
-    mkdir build 
-    cd build
+    
+    mkdir build && cd build
+    
     cmake -DCMAKE_BUILD_TYPE=Release .. 
+    
     make
