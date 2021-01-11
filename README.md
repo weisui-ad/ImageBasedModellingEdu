@@ -16,6 +16,11 @@ ImageBasedModellingEdu2.0 是用于深蓝学院基于图像的三维模型重建
 
 ## 编译（Mac和Linux下没有问题，Window下的编译未经过验证）
 1.安装依赖库包含libpng, libjpeg, libtiff, eigen
+
+ sudo apt-get install libjpeg
+ sudo apt-get install libtiff
+ ...
+ 
 2.执行
     git clone https://github.com/weisui-ad/ImageBasedModellingEdu.git
     cd ~/ImageBasedModellingEdu
