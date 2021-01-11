@@ -11,7 +11,6 @@
   <component name="ChangeListManager">
     <list default="true" id="08155804-328d-42e4-b20e-96f75a0af12d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/CMakeLists.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,10 +33,11 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+    <configuration name="Unnamed" type="CMakeRunConfiguration" factoryName="Application" singleton="false" nameIsGenerated="true" REDIRECT_INPUT="false" ELEVATE="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" EXPLICIT_BUILD_TARGET_NAME="all">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -52,7 +52,8 @@
       <option name="presentableId" value="Default" />
       <updated>1610359517986</updated>
       <workItem from="1610359519428" duration="1726000" />
-      <workItem from="1610361265541" duration="130000" />
+      <workItem from="1610361265541" duration="527000" />
+      <workItem from="1610361832529" duration="15000" />
     </task>
     <task id="LOCAL-00001" summary="Add all the basic library and the sample code for class1">
       <created>1610359674091</created>
@@ -82,7 +83,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610360991146</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Add sample codes corresponding to each class.">
+      <created>1610361425230</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1610361425230</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
