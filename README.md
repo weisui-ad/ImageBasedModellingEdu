@@ -28,7 +28,6 @@ ImageBasedModellingEdu2.0 是用于深蓝学院基于图像的三维模型重建
  brew install libjpeg
  
  brew install libtiff
- ...
  
 2.执行
 
