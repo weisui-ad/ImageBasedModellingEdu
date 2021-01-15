@@ -27,46 +27,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08155804-328d-42e4-b20e-96f75a0af12d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/ImageBasedModellingEdu.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ImageBasedModellingEdu.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/CMakeCache.txt" beforeDir="false" afterPath="$PROJECT_DIR$/build/CMakeCache.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task1/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task1/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task1/class1_test_matching.cc" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task1/task3_test_matching.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task2/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task2/calss2_test_pose_from_fundamental.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task2/class2_test_camera.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task2/class2_test_fundamental_8_point.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task2/class2_test_fundamental_ransac.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task2/class2_test_math_basic.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task2/correspondences.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task2/test_ba.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task2/visualizer.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task2/visualizer.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task3/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task3/class3_test_bundle_adjustment.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task3/class3_test_jacobian.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task3/class3_test_lm_optimize.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task3/class3_test_p3p.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task3/class3_test_triangle.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task3/test_ba.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task4/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task4/class4_test_incremental_sfm.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task4/defines.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task4/functions.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task4/functions.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task5/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task5/class5_dmrecon_multi_views.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task5/class5_dmrecon_single_view.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task5/class5_scene2pset_multi_views.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task5/class5_scene2pset_single_view.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task6/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task6/class6_surface_reconstruction.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task7/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task7/arguments.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task7/arguments.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task7/class7_meshclean.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task7/class7_texrecon.cpp" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +55,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
-  <component name="RunManager" selected="CMake Application.task6_test_pose_from_fundamental">
+  <component name="RunManager" selected="CMake Application.task3_test_feature_matching">
     <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
@@ -150,7 +111,7 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="task3_test_feature_matching" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="task3_test_feature_matching" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ImageBasedModellingEdu" RUN_TARGET_NAME="task3_test_feature_matching">
+    <configuration name="task3_test_feature_matching" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="./examples/data/kxm1.jpg ./examples/data/kxm2.jpg" REDIRECT_INPUT="false" ELEVATE="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="task3_test_feature_matching" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ImageBasedModellingEdu" RUN_TARGET_NAME="task3_test_feature_matching">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -218,7 +179,7 @@
       <workItem from="1610361918098" duration="267000" />
       <workItem from="1610362189581" duration="367000" />
       <workItem from="1610371125559" duration="614000" />
-      <workItem from="1610634494350" duration="2233000" />
+      <workItem from="1610634494350" duration="3956000" />
     </task>
     <task id="LOCAL-00001" summary="Add all the basic library and the sample code for class1">
       <created>1610359674091</created>
@@ -262,7 +223,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610361982441</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Prepare for class1">
+      <created>1610636775031</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1610636775031</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -286,7 +254,8 @@
     <MESSAGE value="Add based modules: util, core, features, math, mvs, sfm, surface, texturing for this project." />
     <MESSAGE value="Add sample codes corresponding to each class." />
     <MESSAGE value="Add cmake files for compilation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add cmake files for compilation" />
+    <MESSAGE value="Prepare for class1" />
+    <option name="LAST_COMMIT_MESSAGE" value="Prepare for class1" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
