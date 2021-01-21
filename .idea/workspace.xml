@@ -37,12 +37,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08155804-328d-42e4-b20e-96f75a0af12d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/examples/task2/task2-2_test_p3p_ransac.cc" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sfm/bundler_incremental.cc" beforeDir="false" afterPath="$PROJECT_DIR$/sfm/bundler_incremental.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sfm/pose_p3p.cc" beforeDir="false" afterPath="$PROJECT_DIR$/sfm/pose_p3p.cc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sfm/ransac_pose_p3p.cc" beforeDir="false" afterPath="$PROJECT_DIR$/sfm/ransac_pose_p3p.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task4/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task4/class4_test_incremental_sfm.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task4/defines.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task4/functions.cc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task4/functions.h" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -246,7 +247,7 @@
       <workItem from="1610371125559" duration="614000" />
       <workItem from="1610634494350" duration="4543000" />
       <workItem from="1610892774715" duration="1979000" />
-      <workItem from="1611139759205" duration="19942000" />
+      <workItem from="1611139759205" duration="20332000" />
     </task>
     <task id="LOCAL-00001" summary="Add all the basic library and the sample code for class1">
       <created>1610359674091</created>
@@ -304,7 +305,14 @@
       <option name="project" value="LOCAL" />
       <updated>1610712378524</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Add additional files for class2">
+      <created>1611244524936</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1611244524936</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -330,7 +338,8 @@
     <MESSAGE value="Add cmake files for compilation" />
     <MESSAGE value="Prepare for class1" />
     <MESSAGE value="Add additional files for class1" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add additional files for class1" />
+    <MESSAGE value="Add additional files for class2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add additional files for class2" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
