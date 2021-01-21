@@ -10,6 +10,9 @@
 #include <limits>
 #include <iostream>
 #include <utility>
+#include <iostream>
+#include <fstream>
+#include <stdlib.h>
 
 #include "util/timer.h"
 #include "math/transform.h"
@@ -114,8 +117,7 @@ Incremental::reconstruct_next_view (int view_id)
         feature_ids.push_back(i);
     }
 
-    if (this->opts.verbose_output)
-    {
+    if (this->opts.verbose_output){
         std::cout << "Collected " << corr.size()
             << " 2D-3D correspondences." << std::endl;
     }
@@ -123,6 +125,13 @@ Incremental::reconstruct_next_view (int view_id)
     /* Initialize a temporary camera. */
     CameraPose temp_camera;
     temp_camera.set_k_matrix(viewport.focal_length, 0.0, 0.0);
+
+//    std::ofstream fout("./examples/task2/correspondence2D3D.txt");
+//    assert(fout.is_open());
+//    fout<<corr.size()<<std::endl;
+//    for(int kk=0; kk<corr.size(); kk++){
+//        fout<<corr[kk].p3d[0]<<" "<<corr[kk].p3d[1]<<" "<<corr[kk].p3d[2]<<" "<<corr[kk].p2d[0]<<" "<<corr[kk].p2d[1]<<std::endl;
+//    }
 
     /* Compute pose from 2D-3D correspondences using P3P. */
     util::WallTimer timer;
@@ -133,8 +142,7 @@ Incremental::reconstruct_next_view (int view_id)
     }
 
     /* Cancel if inliers are below a 33% threshold. */
-    if (3 * ransac_result.inliers.size() < corr.size())
-    {
+    if (3 * ransac_result.inliers.size() < corr.size()){
         if (this->opts.verbose_output)
             std::cout << "Only " << ransac_result.inliers.size()
                 << " 2D-3D correspondences inliers ("
@@ -268,8 +276,8 @@ Incremental::triangulate_new_tracks (int min_num_views)
     Triangulate triangulator(triangulate_opts);
 
     std::size_t initial_tracks_size = this->tracks->size();
-    for (std::size_t i = 0; i < this->tracks->size(); ++i)
-    {
+    for (std::size_t i = 0; i < this->tracks->size(); ++i){
+
         /* Skip tracks that have already been triangulated. */
         Track const& track = this->tracks->at(i);
         if (track.is_valid())
@@ -283,8 +291,8 @@ Incremental::triangulate_new_tracks (int min_num_views)
         std::vector<CameraPose const*> poses;
         std::vector<std::size_t> view_ids;
         std::vector<std::size_t> feature_ids;
-        for (std::size_t j = 0; j < track.features.size(); ++j)
-        {
+        for (std::size_t j = 0; j < track.features.size(); ++j){
+
             int const view_id = track.features[j].view_id;
             if (!this->viewports->at(view_id).pose.is_valid())
                 continue;
@@ -317,8 +325,8 @@ Incremental::triangulate_new_tracks (int min_num_views)
         Track outlier_track;
         outlier_track.invalidate();
         outlier_track.color = inlier_track.color;
-        for (std::size_t i = 0; i < outlier.size(); ++i)
-        {
+        for (std::size_t i = 0; i < outlier.size(); ++i){
+
             int const view_id = view_ids[outlier[i]];
             int const feature_id = feature_ids[outlier[i]];
             /* Remove outlier from inlier track */
@@ -332,8 +340,7 @@ Incremental::triangulate_new_tracks (int min_num_views)
         this->tracks->push_back(outlier_track);
     }
 
-    if (this->opts.verbose_output)
-    {
+    if (this->opts.verbose_output){
         triangulator.print_statistics(stats, std::cout);
         std::cout << "  Splitted " << this->tracks->size()
             - initial_tracks_size << " new tracks." << std::endl;
@@ -362,16 +369,14 @@ Incremental::bundle_adjustment_single_cam (int view_id)
 /* ---------------------------------------------------------------- */
 
 void
-Incremental::bundle_adjustment_points_only (void)
-{
+Incremental::bundle_adjustment_points_only (void){
     this->bundle_adjustment_intern(-2);
 }
 
 /* ---------------------------------------------------------------- */
 
 void
-Incremental::bundle_adjustment_intern (int single_camera_ba)
-{
+Incremental::bundle_adjustment_intern (int single_camera_ba){
     ba::BundleAdjustment::Options ba_opts;
     ba_opts.fixed_intrinsics = this->opts.ba_fixed_intrinsics;
     ba_opts.verbose_output = this->opts.verbose_ba;
@@ -424,8 +429,8 @@ Incremental::bundle_adjustment_intern (int single_camera_ba)
         ba_points_3d.push_back(point);
 
         /* Add all observations to BA. */
-        for (std::size_t j = 0; j < track.features.size(); ++j)
-        {
+        for (std::size_t j = 0; j < track.features.size(); ++j){
+
             int const view_id = track.features[j].view_id;
             if (!this->viewports->at(view_id).pose.is_valid())
                 continue;
@@ -444,8 +449,8 @@ Incremental::bundle_adjustment_intern (int single_camera_ba)
         }
     }
 
-    for (std::size_t i = 0; registered && i < this->survey_points->size(); ++i)
-    {
+    for (std::size_t i = 0; registered && i < this->survey_points->size(); ++i){
+
         SurveyPoint const& survey_point = this->survey_points->at(i);
 
         /* Add corresponding 3D point to BA. */

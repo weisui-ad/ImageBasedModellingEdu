@@ -25,10 +25,11 @@ RansacPoseP3P::RansacPoseP3P (Options const& options)
 
 void
 RansacPoseP3P::estimate (Correspondences2D3D const& corresp,
-    math::Matrix<double, 3, 3> const& k_matrix, Result* result) const
-{
-    if (this->opts.verbose_output)
-    {
+    math::Matrix<double, 3, 3> const& k_matrix, Result* result) const{
+
+    //std::cout<<"intrisict matrix: "<<k_matrix<<std::endl;
+
+    if (this->opts.verbose_output){
         std::cout << "RANSAC-3: Running for " << this->opts.max_iterations
             << " iterations, threshold " << this->opts.threshold
             << "..." << std::endl;
@@ -54,18 +55,15 @@ RansacPoseP3P::estimate (Correspondences2D3D const& corresp,
             this->compute_p3p(corresp, inv_k_matrix, &poses);
 
             /* Check all putative solutions and count inliers. */
-            for (std::size_t j = 0; j < poses.size(); ++j)
-            {
+            for (std::size_t j = 0; j < poses.size(); ++j){
                 this->find_inliers(corresp, k_matrix, poses[j], &inliers);
 #pragma omp critical
-                if (inliers.size() > result->inliers.size())
-                {
+                if (inliers.size() > result->inliers.size()){
                     result->pose = poses[j];
                     std::swap(result->inliers, inliers);
                     inliers.reserve(corresp.size());
 
-                    if (this->opts.verbose_output)
-                    {
+                    if (this->opts.verbose_output){
                         std::cout << "RANSAC-3: Iteration " << iteration
                             << ", inliers " << result->inliers.size() << " ("
                             << (100.0 * result->inliers.size() / corresp.size())
@@ -80,8 +78,10 @@ RansacPoseP3P::estimate (Correspondences2D3D const& corresp,
 void
 RansacPoseP3P::compute_p3p (Correspondences2D3D const& corresp,
     math::Matrix<double, 3, 3> const& inv_k_matrix,
-    PutativePoses* poses) const
-{
+    PutativePoses* poses) const{
+
+    //std::cout<<"inverse k matrix: "<<inv_k_matrix<<std::endl;
+
     if (corresp.size() < 3)
         throw std::invalid_argument("At least 3 correspondences required");
 
@@ -94,12 +94,19 @@ RansacPoseP3P::compute_p3p (Correspondences2D3D const& corresp,
     Correspondence2D3D const& c1(corresp[*iter++]);
     Correspondence2D3D const& c2(corresp[*iter++]);
     Correspondence2D3D const& c3(corresp[*iter]);
+
+    //std::cout<<"c1: "<<c1.p2d[0]<<" "<<c1.p2d[1]<<std::endl;
+    //std::cout<<"c2: "<<c2.p2d[0]<<" "<<c2.p2d[1]<<std::endl;
+    //std::cout<<"c3: "<<c3.p2d[0]<<" "<<c3.p2d[1]<<std::endl;
+
     pose_p3p_kneip(
         math::Vec3d(c1.p3d), math::Vec3d(c2.p3d), math::Vec3d(c3.p3d),
         inv_k_matrix.mult(math::Vec3d(c1.p2d[0], c1.p2d[1], 1.0)),
         inv_k_matrix.mult(math::Vec3d(c2.p2d[0], c2.p2d[1], 1.0)),
         inv_k_matrix.mult(math::Vec3d(c3.p2d[0], c3.p2d[1], 1.0)),
         poses);
+
+
 }
 
 void

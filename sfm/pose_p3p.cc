@@ -9,6 +9,7 @@
 
 #include <complex>
 #include <algorithm>
+#include <iostream>
 
 #include "math/matrix.h"
 #include "math/vector.h"
@@ -36,18 +37,15 @@ namespace
 
         double const alpha = -3.0 * B2 / (8.0 * A2) + C / A;
         double const beta = B3 / (8.0 * A3)- B * C / (2.0 * A2) + D / A;
-        double const gamma = -3.0 * B4 / (256.0 * A4) + B2 * C / (16.0 * A3)
-            - B * D / (4.0 * A2) + E / A;
+        double const gamma = -3.0 * B4 / (256.0 * A4) + B2 * C / (16.0 * A3) - B * D / (4.0 * A2) + E / A;
 
         double const alpha2 = alpha * alpha;
         double const alpha3 = alpha2 * alpha;
         double const beta2 = beta * beta;
 
         std::complex<double> P(-alpha2 / 12.0 - gamma, 0.0);
-        std::complex<double> Q(-alpha3 / 108.0
-            + alpha * gamma / 3.0 - beta2 / 8.0, 0.0);
-        std::complex<double> R = -Q / 2.0
-            + std::sqrt(Q * Q / 4.0 + P * P * P / 27.0);
+        std::complex<double> Q(-alpha3 / 108.0 + alpha * gamma / 3.0 - beta2 / 8.0, 0.0);
+        std::complex<double> R = -Q / 2.0 + std::sqrt(Q * Q / 4.0 + P * P * P / 27.0);
 
         std::complex<double> U = std::pow(R, 1.0 / 3.0);
         std::complex<double> y = (U.real() == 0.0)
@@ -74,12 +72,20 @@ void
 pose_p3p_kneip (
     math::Vec3d p1, math::Vec3d p2, math::Vec3d p3,
     math::Vec3d f1, math::Vec3d f2, math::Vec3d f3,
-    std::vector<math::Matrix<double, 3, 4> >* solutions)
-{
+    std::vector<math::Matrix<double, 3, 4> >* solutions){
+
+//    std::cout<<"p1: "<< p1<<std::endl;
+//    std::cout<<"p2: "<< p2<<std::endl;
+//    std::cout<<"p3: "<< p3<<std::endl;
+//
+//    std::cout<<"f1: "<< f1<<std::endl;
+//    std::cout<<"f2: "<< f2<<std::endl;
+//    std::cout<<"f3: "<< f3<<std::endl;
+
+
     /* Check if points are co-linear. In this case return no solution. */
     double const colinear_threshold = 1e-10;
-    if ((p2 - p1).cross(p3 - p1).square_norm() < colinear_threshold)
-    {
+    if ((p2 - p1).cross(p3 - p1).square_norm() < colinear_threshold){
         solutions->clear();
         return;
     }
@@ -106,8 +112,8 @@ pose_p3p_kneip (
     }
 
     /* Change camera frame and point order if f3[2] > 0. */
-    if (f3[2] > 0.0)
-    {
+    if (f3[2] > 0.0){
+
         std::swap(p1, p2);
         std::swap(f1, f2);
 
@@ -201,8 +207,8 @@ pose_p3p_kneip (
     /* Back-substitution of each solution. */
     solutions->clear();
     solutions->resize(4);
-    for (int i = 0; i < 4; ++i)
-    {
+    for (int i = 0; i < 4; ++i){
+
         double cot_alpha = (-f_1 * p_1 / f_2 - real_roots[i] * p_2 + d_12 * b)
             / (-f_1 * real_roots[i] * p_2 / f_2 + p_1 - d_12);
 
@@ -234,6 +240,9 @@ pose_p3p_kneip (
 
         solutions->at(i) = R.hstack(C);
     }
+//    for(int i=0; i<solutions->size(); i++){
+//        std::cout<<"solution: "<<i<< (*solutions)[i]<<std::endl;
+//    }
 }
 
 SFM_NAMESPACE_END
