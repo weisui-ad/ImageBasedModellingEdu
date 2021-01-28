@@ -7,11 +7,10 @@
     <generated>
       <config projectName="ImageBasedModellingEdu" targetName="task1_test_math_basic" />
       <config projectName="ImageBasedModellingEdu" targetName="features" />
-      <config projectName="ImageBasedModellingEdu" targetName="task2-5_test_ba" />
-      <config projectName="ImageBasedModellingEdu" targetName="task2-3_test_lm_optimize" />
       <config projectName="ImageBasedModellingEdu" targetName="util" />
       <config projectName="ImageBasedModellingEdu" targetName="task3_test_feature_matching" />
-      <config projectName="ImageBasedModellingEdu" targetName="task4_incremental_sfm" />
+      <config projectName="ImageBasedModellingEdu" targetName="task2-3_test_lm_optimize" />
+      <config projectName="ImageBasedModellingEdu" targetName="task2-5_test_ba" />
       <config projectName="ImageBasedModellingEdu" targetName="gco" />
       <config projectName="ImageBasedModellingEdu" targetName="sfm" />
       <config projectName="ImageBasedModellingEdu" targetName="task2_test_camera_model" />
@@ -27,6 +26,7 @@
       <config projectName="ImageBasedModellingEdu" targetName="coldet" />
       <config projectName="ImageBasedModellingEdu" targetName="task2-2_test_p3p_kneip" />
       <config projectName="ImageBasedModellingEdu" targetName="core" />
+      <config projectName="ImageBasedModellingEdu" targetName="task3-1_incremental_sfm" />
       <config projectName="ImageBasedModellingEdu" targetName="task2-1_test_triangle" />
     </generated>
   </component>
@@ -37,13 +37,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08155804-328d-42e4-b20e-96f75a0af12d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/ImageBasedModellingEdu.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/ImageBasedModellingEdu.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/image_tools.h" beforeDir="false" afterPath="$PROJECT_DIR$/core/image_tools.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task4/CMakeLists.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task4/class4_test_incremental_sfm.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task4/defines.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task4/functions.cc" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task4/functions.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task2/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task2/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task2/task2-4_test_jacobian.cc" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task2/task2-4_test_jacobian.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sfm/bundler_incremental.cc" beforeDir="false" afterPath="$PROJECT_DIR$/sfm/bundler_incremental.cc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,10 +79,10 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
-  <component name="RunManager" selected="CMake Application.task2-2_test_p3p_ransac">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+  <component name="RunManager" selected="CMake Application.task3-1_incremental_sfm">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="coldet" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="coldet" CONFIG_NAME="Debug">
@@ -165,6 +165,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="task3-1_incremental_sfm" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="task3-1_incremental_sfm" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ImageBasedModellingEdu" RUN_TARGET_NAME="task3-1_incremental_sfm">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="task3_test_feature_matching" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="./examples/data/kxm1.jpg ./examples/data/kxm2.jpg" REDIRECT_INPUT="false" ELEVATE="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="task3_test_feature_matching" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ImageBasedModellingEdu" RUN_TARGET_NAME="task3_test_feature_matching">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -218,6 +223,7 @@
       <item itemvalue="CMake Application.task6_test_pose_from_fundamental" />
       <item itemvalue="CMake Application.task2-1_test_triangle" />
       <item itemvalue="CMake Application.task2-2_test_p3p_kneip" />
+      <item itemvalue="CMake Application.task3-1_incremental_sfm" />
       <item itemvalue="CMake Application.task2-2_test_p3p_ransac" />
       <item itemvalue="CMake Application.task2-3_test_lm_optimize" />
       <item itemvalue="CMake Application.task2-4_test_jacobian" />
@@ -247,7 +253,8 @@
       <workItem from="1610371125559" duration="614000" />
       <workItem from="1610634494350" duration="4543000" />
       <workItem from="1610892774715" duration="1979000" />
-      <workItem from="1611139759205" duration="20332000" />
+      <workItem from="1611139759205" duration="21294000" />
+      <workItem from="1611838951872" duration="1357000" />
     </task>
     <task id="LOCAL-00001" summary="Add all the basic library and the sample code for class1">
       <created>1610359674091</created>
@@ -312,7 +319,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611244524936</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="delete task4">
+      <created>1611252554842</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1611252554842</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,7 +353,8 @@
     <MESSAGE value="Prepare for class1" />
     <MESSAGE value="Add additional files for class1" />
     <MESSAGE value="Add additional files for class2" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add additional files for class2" />
+    <MESSAGE value="delete task4" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete task4" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
