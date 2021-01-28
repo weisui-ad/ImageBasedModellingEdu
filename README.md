@@ -40,3 +40,9 @@ ImageBasedModellingEdu2.0 是用于深蓝学院基于图像的三维模型重建
     cmake -DCMAKE_BUILD_TYPE=Release .. 
     
     make -j8
+
+3. 示例代码examples/
+
+   ./build/examples/task3/task3-1_incremental_sfm ./examples/data/sequence ./examples/data/sequence_scene
+
+ 
