@@ -36,8 +36,8 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08155804-328d-42e4-b20e-96f75a0af12d" name="Default Changelist" comment="add examples for task3">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="08155804-328d-42e4-b20e-96f75a0af12d" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/examples/task3/task3-1_test_incremental_sfm.cc" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task3/task3-1_test_incremental_sfm.cc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -248,7 +248,7 @@
       <workItem from="1610634494350" duration="4543000" />
       <workItem from="1610892774715" duration="1979000" />
       <workItem from="1611139759205" duration="21294000" />
-      <workItem from="1611838951872" duration="1717000" />
+      <workItem from="1611838951872" duration="1775000" />
     </task>
     <task id="LOCAL-00001" summary="Add all the basic library and the sample code for class1">
       <created>1610359674091</created>
@@ -327,7 +327,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611840601575</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="add examples for task3">
+      <created>1611841259315</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1611841259315</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
