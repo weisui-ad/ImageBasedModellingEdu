@@ -7,18 +7,18 @@
     <generated>
       <config projectName="ImageBasedModellingEdu" targetName="task1_test_math_basic" />
       <config projectName="ImageBasedModellingEdu" targetName="features" />
+      <config projectName="ImageBasedModellingEdu" targetName="task2-5_test_ba" />
+      <config projectName="ImageBasedModellingEdu" targetName="task2-3_test_lm_optimize" />
       <config projectName="ImageBasedModellingEdu" targetName="util" />
       <config projectName="ImageBasedModellingEdu" targetName="task3_test_feature_matching" />
-      <config projectName="ImageBasedModellingEdu" targetName="task2-3_test_lm_optimize" />
-      <config projectName="ImageBasedModellingEdu" targetName="task2-5_test_ba" />
       <config projectName="ImageBasedModellingEdu" targetName="gco" />
       <config projectName="ImageBasedModellingEdu" targetName="sfm" />
       <config projectName="ImageBasedModellingEdu" targetName="task2_test_camera_model" />
       <config projectName="ImageBasedModellingEdu" targetName="task4_test_fundamental_8_point" />
       <config projectName="ImageBasedModellingEdu" targetName="task2-4_test_jacobian" />
       <config projectName="ImageBasedModellingEdu" targetName="mrf" />
-      <config projectName="ImageBasedModellingEdu" targetName="task6_test_pose_from_fundamental" />
       <config projectName="ImageBasedModellingEdu" targetName="task2-2_test_p3p_ransac" />
+      <config projectName="ImageBasedModellingEdu" targetName="task6_test_pose_from_fundamental" />
       <config projectName="ImageBasedModellingEdu" targetName="surface" />
       <config projectName="ImageBasedModellingEdu" targetName="texturing" />
       <config projectName="ImageBasedModellingEdu" targetName="task5_test_fundamental_ransac" />
@@ -26,8 +26,8 @@
       <config projectName="ImageBasedModellingEdu" targetName="coldet" />
       <config projectName="ImageBasedModellingEdu" targetName="task2-2_test_p3p_kneip" />
       <config projectName="ImageBasedModellingEdu" targetName="core" />
-      <config projectName="ImageBasedModellingEdu" targetName="task3-1_incremental_sfm" />
       <config projectName="ImageBasedModellingEdu" targetName="task2-1_test_triangle" />
+      <config projectName="ImageBasedModellingEdu" targetName="task3-1_incremental_sfm" />
     </generated>
   </component>
   <component name="CMakeSettings" AUTO_RELOAD="true">
@@ -37,7 +37,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="08155804-328d-42e4-b20e-96f75a0af12d" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/examples/task3/task3-1_test_incremental_sfm.cc" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task3/task3-1_test_incremental_sfm.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task1/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task1/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task1/class1_test_features.cc" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task1/task1-7_test_features.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task1/task1_test_math_basic.cc" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task1/task1-1_test_math_basic.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task1/task2_test_camera.cc" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task1/task1-2_test_camera.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task1/task3_test_matching.cc" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task1/task1-6_test_matching.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task1/task4_test_fundamental_8_point.cc" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task1/task1-3_test_fundamental_8_point.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task1/task5_test_fundamental_ransac.cc" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task1/task1-4_test_fundamental_ransac.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task1/task6_test_pose_from_fundamental.cc" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task1/task1-5_test_pose_from_fundamental.cc" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,9 +82,9 @@
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
   <component name="RunManager" selected="CMake Application.task3-1_incremental_sfm">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
     <configuration name="coldet" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="coldet" CONFIG_NAME="Debug">
@@ -248,7 +256,8 @@
       <workItem from="1610634494350" duration="4543000" />
       <workItem from="1610892774715" duration="1979000" />
       <workItem from="1611139759205" duration="21294000" />
-      <workItem from="1611838951872" duration="1775000" />
+      <workItem from="1611838951872" duration="2469000" />
+      <workItem from="1611884840188" duration="2063000" />
     </task>
     <task id="LOCAL-00001" summary="Add all the basic library and the sample code for class1">
       <created>1610359674091</created>
@@ -334,7 +343,14 @@
       <option name="project" value="LOCAL" />
       <updated>1611841259315</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="add examples for task3">
+      <created>1611841317616</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1611841317616</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
