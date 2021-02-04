@@ -24,8 +24,7 @@ MVS_NAMESPACE_BEGIN
  * 局部视角选择是从全局视角中选取一些视角(最多4个)，局部视角是针对每个patch的
  * 因此更加灵活，也就是每个patch的局部视角可以是不同的，但是全局视角都是相同的。
  */
-class LocalViewSelection : public ViewSelection
-{
+class LocalViewSelection : public ViewSelection{
 public:
     LocalViewSelection(
         std::vector<SingleView::Ptr> const& views,
@@ -33,9 +32,17 @@ public:
         IndexSet const& globalViews,
         IndexSet const& propagated,
         PatchSampler::Ptr sampler);
+
+    /**进行视角选怎**/
     void performVS();
+
+    /**
+     * 从local view中去除toBeReplaced的视角，并重新进行local view selection
+     * @param toBeReplaced
+     */
     void replaceViews(IndexSet const& toBeReplaced);
 
+    /**是否成功**/
     bool success;
 
 private:

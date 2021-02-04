@@ -29,17 +29,31 @@ struct Settings
 
     /** Size of the patch is width * width, defaults to 5x5. */
     unsigned int filterWidth = 5;
+
+    /**NCC的阈值，低于此值则说明匹配是无效的**/
     float minNCC = 0.3f;
-    // 视差
+
+    /**计算特征点在不同视角中的射线构成的夹脚**/
     float minParallax = 10.0f;
+
+    /**可以接受的NCC的值**/
     float acceptNCC = 0.6f;
+
     float minRefineDiff = 0.001f;
+
+    /**depth和normal优化时的最大迭代次数**/
     unsigned int maxIterations = 20;
+
+    /**局部视角的个数**/
     unsigned int nrReconNeighbors = 4;
 
-    // global view 最大设置为20个
+    /**全局视角global view 最大设置为20个**/
     unsigned int globalVSMax = 20;
+
+    /**图像的尺度**/
     int scale = 0;
+
+    /**是否采用颜色空间的尺度对图像**/
     bool useColorScale = true;
     bool writePlyFile = false;
 

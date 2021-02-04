@@ -146,12 +146,11 @@ colAndExactDeriv(core::ByteImage const& img, PixelCoords const& imgPos,
     }
 }
 
-/* ------------------------------------------------------------------ */
 
 void
 getXYZColorAtPix(core::ByteImage const& img,
-    std::vector<math::Vec2i> const& imgPos, Samples* color)
-{
+    std::vector<math::Vec2i> const& imgPos, Samples* color){
+
     // 图像的宽度
     int width = img.width();
     Samples::iterator itCol = color->begin();
@@ -173,19 +172,21 @@ getXYZColorAtPix(core::ByteImage const& img,
 
 void
 getXYZColorAtPos(core::ByteImage const& img, PixelCoords const& imgPos,
-    Samples* color)
-{
+    Samples* color){
+
+    // 图像尺寸
     int width = img.width();
     int height = img.height();
     PixelCoords::const_iterator citPos;
     Samples::iterator itCol = color->begin();
 
-    for (citPos = imgPos.begin(); citPos != imgPos.end(); ++citPos, ++itCol)
-    {
+    /**对图像的每个位置**/
+    for (citPos = imgPos.begin(); citPos != imgPos.end(); ++citPos, ++itCol){
         int const i = floor((*citPos)[0]);
         int const j = floor((*citPos)[1]);
         assert(i < width-1 && j < height-1);
 
+        /**进行双线性插值，获取颜色值**/
         float const u = (*citPos)[0] - i;
         float const v = (*citPos)[1] - j;
         int const p0 = (j * width + i) * 3;

@@ -20,85 +20,143 @@
 
 MVS_NAMESPACE_BEGIN
 
-struct Status
-{
-    std::size_t iterationCount;
-    bool converged;
-    bool optiSuccess;
+struct Status{
+    std::size_t iterationCount;   // 最大迭代次数
+    bool converged;               // 是否收敛
+    bool optiSuccess;             //
 };
+
 
 /**
  * \description 对patch的深度进行优化
  */
-class PatchOptimization
-{
+class PatchOptimization{
+
 public:
 
-    // constructor
+    /**
+     * Constructor
+     * @param _views
+     * @param _settings
+     * @param _x
+     * @param _y
+     * @param _depth
+     * @param _dzI
+     * @param _dzJ
+     * @param _globalViewIDs
+     * @param _localViewIDs
+     */
     PatchOptimization(
         std::vector<SingleView::Ptr> const& _views,
         Settings const& _settings,
-        int _x,          // Pixel position
+        int _x,          // Pixel position  像素位置
         int _y,
-        float _depth,
-        float _dzI,
-        float _dzJ,
-        IndexSet const& _globalViewIDs,
-        IndexSet const& _localViewIDs);
+        float _depth,    // depth的深度
+        float _dzI,      // hs(s,t)
+        float _dzJ,      // ht(s.t)
+        IndexSet const& _globalViewIDs,   // 全局的视角
+        IndexSet const& _localViewIDs);   // 局部视角
 
-    // todo 颜色尺度是什么意思？？？
+
+    /**
+     * 计算颜色尺度
+     */
     void computeColorScale();
+
+    /**
+     * 计算置信度
+     * @return
+     */
     float computeConfidence();
+
     float derivNorm();
+
+    /**
+     * 自动进行优化
+     */
     void doAutoOptimization();
+
+    /**
+     * 获取depth
+     * @return
+     */
     float getDepth() const;
+
+    /**
+     * 获取hs(s,t)
+     * @return
+     */
     float getDzI() const;
+
+    /**
+     * 获取ht(s,t)
+     * @return
+     */
     float getDzJ() const;
 
-    // 获取局部视角
+    /**
+     * 获取局部视角的索引
+     * @return
+     */
     IndexSet const& getLocalViewIDs() const;
 
-    // 获取法向量
+    /**
+     * 通过path 3D点的坐标，计算patch的法向量
+     * @return
+     */
     math::Vec3f getNormal() const;
     float objFunValue();
 
-    // 优化深度
+    /**
+     * 仅优化depth
+     */
     void optimizeDepthOnly();
 
-    // 优化深度和法向量
+    /**
+     * 同时优化depth和normal
+     */
     void optimizeDepthAndNormal();
 
 private:
     std::vector<SingleView::Ptr> const& views;
     Settings const& settings;
+
     // initial values and settings
     const int midx;
     const int midy;
 
-    float depth;
-    float dzI, dzJ;// represents patch normal
-    std::map<std::size_t, math::Vec3f, std::less<std::size_t> > colorScale;
+    float depth;     // depth 值
+    float dzI, dzJ;  // represents patch normal
+    std::map<std::size_t, math::Vec3f, std::less<std::size_t> > colorScale;  // 每个视角的颜色尺度
+
     Status status;
 
+    /**
+     * patch sampler
+     */
     PatchSampler::Ptr sampler;
 
     // patch点的x 和 y 坐标
-    std::vector<int> ii, jj;
+    std::vector<int> ii, jj;  // ii, jj坐标
 
-    // 像素权重
+    /**
+     * 像素的权重值
+     */
     std::vector<float> pixel_weight;
+
+    /**
+     * 局部视角选取
+     */
     LocalViewSelection localVS;
 };
 
 inline float
-PatchOptimization::getDepth() const
-{
+PatchOptimization::getDepth() const{
     return depth;
 }
 
 inline float
-PatchOptimization::getDzI() const
-{
+PatchOptimization::getDzI() const{
     return dzI;
 }
 
@@ -109,14 +167,12 @@ PatchOptimization::getDzJ() const
 }
 
 inline IndexSet const&
-PatchOptimization::getLocalViewIDs() const
-{
+PatchOptimization::getLocalViewIDs() const{
     return localVS.getSelectedIDs();
 }
 
 inline math::Vec3f
-PatchOptimization::getNormal() const
-{
+PatchOptimization::getNormal() const{
     return sampler->getPatchNormal();
 }
 

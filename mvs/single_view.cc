@@ -92,10 +92,18 @@ SingleView::viewRay(int x, int y, int level) const
 }
 
 math::Vec3f
-SingleView::viewRay(float x, float y, int level) const
-{
+SingleView::viewRay(float x, float y, int level) const{
+
+    /**
+     * 像素坐标通过内参矩阵转化成视线
+     * 像素（u,v）
+     * 视线（（u-cx)/f, (v-cy)/f, 1)
+     * **/
     math::Vec3f ray = core::geom::pixel_3dpos(x, y, 1.f, this->img_pyramid->at(level).invproj);
+
+    /**将视线转换到世界坐标系中**/
     math::Matrix3f rot(view->get_camera().rot);
+
     return rot.transposed() * ray;
 }
 

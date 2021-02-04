@@ -111,16 +111,14 @@ DMRecon::start()
 
 
         // 保存图像
-        if (progress.cancelled)
-        {
+        if (progress.cancelled){
             progress.status = RECON_CANCELLED;
             return;
         }
 
         progress.status = RECON_SAVING;
         SingleView::Ptr refV(views[settings.refViewNr]);
-        if (settings.writePlyFile)
-        {
+        if (settings.writePlyFile){
             if (!settings.quiet)
                 std::cout << "Saving ply file as "
                     << settings.plyPath << "/"
@@ -136,22 +134,19 @@ DMRecon::start()
         name += util::string::get(settings.scale);
         view->set_image(refV->depthImg, name);
 
-        if (settings.keepDzMap)
-        {
+        if (settings.keepDzMap){
             name = "dz-L";
             name += util::string::get(settings.scale);
             view->set_image(refV->dzImg, name);
         }
 
-        if (settings.keepConfidenceMap)
-        {
+        if (settings.keepConfidenceMap){
             name = "conf-L";
             name += util::string::get(settings.scale);
             view->set_image(refV->confImg, name);
         }
 
-        if (settings.scale != 0)
-        {
+        if (settings.scale != 0){
             name = "undist-L";
             name += util::string::get(settings.scale);
             view->set_image(refV->getScaledImg()->duplicate(), name);
@@ -199,8 +194,8 @@ DMRecon::analyzeFeatures()
     core::Bundle::Features const& features = bundle->get_features();
 
     // 对每一个特征点
-    for (std::size_t i = 0; i < features.size() && !progress.cancelled; ++i)
-    {
+    for (std::size_t i = 0; i < features.size() && !progress.cancelled; ++i){
+
         // 三维点在该参考视角中可见
         if (!features[i].contains_view_id(settings.refViewNr))
             continue;
@@ -217,8 +212,8 @@ DMRecon::analyzeFeatures()
             continue;
 
         // 如果该三维点是在参考视角中可见的，则将其添加到所有可见的视角中--每个视角包含哪些可见的特征点
-        for (std::size_t j = 0; j < features[i].refs.size(); ++j)
-        {
+        for (std::size_t j = 0; j < features[i].refs.size(); ++j){
+
             int view_id = features[i].refs[j].view_id;
             if (view_id < 0 || view_id >= static_cast<int>(views.size())
                 || views[view_id] == nullptr)
@@ -232,8 +227,8 @@ DMRecon::analyzeFeatures()
 }
 
 void
-DMRecon::globalViewSelection()
-{
+DMRecon::globalViewSelection(){
+
     progress.status = RECON_GLOBALVS;
     if (progress.cancelled)
         return;
@@ -249,8 +244,7 @@ DMRecon::globalViewSelection()
         throw std::runtime_error("Global View Selection failed");
 
     /* Print result of global view selection. */
-    if (!settings.quiet)
-    {
+    if (!settings.quiet){
         std::cout << "Global View Selection:";
         for (IndexSet::const_iterator iter = neighViews.begin();
             iter != neighViews.end(); ++iter)
@@ -269,8 +263,8 @@ DMRecon::globalViewSelection()
 }
 
 void
-DMRecon::processFeatures()
-{
+DMRecon::processFeatures(){
+
     progress.status = RECON_FEATURES;
     if (progress.cancelled)
         return;
@@ -349,8 +343,7 @@ DMRecon::processFeatures()
         // 获取法向量
         math::Vec3f normal = patch.getNormal();
         // 如果当前优化的置信度大于之前的置信度，即更可靠
-        if (refV->confImg->at(index) < conf)
-        {
+        if (refV->confImg->at(index) < conf){
             if (refV->confImg->at(index) <= 0)
                 ++progress.filled;
 
@@ -403,8 +396,8 @@ DMRecon::processQueue()
     lastStatus = progress.filled;
 
     // 队列不为空
-    while (!prQueue.empty() && !progress.cancelled)
-    {
+    while (!prQueue.empty() && !progress.cancelled){
+
         progress.queueSize = prQueue.size();
 
         // 每填充1000个像素并且填充像素在增加，则打印输出填充结果
@@ -426,15 +419,18 @@ DMRecon::processQueue()
         float y = tmpData.y;
         int index = y * this->width + x;
 
-        // 一般情况下这里应该相等 todo ?????
+        //此处应该是相等的
         if (refV->confImg->at(index) > tmpData.confidence) {
             continue ;
         }
 
+        /**进行patch 优化**/
         PatchOptimization patch(views, settings, x, y, tmpData.depth,
             tmpData.dz_i, tmpData.dz_j, neighViews, tmpData.localViewIDs);
         patch.doAutoOptimization();
         tmpData.confidence = patch.computeConfidence();
+
+        /*优化后的confidence<0 则抛除*/
         if (tmpData.confidence == 0) {
             continue;
         }
@@ -446,11 +442,11 @@ DMRecon::processQueue()
         math::Vec3f normal = patch.getNormal();
         tmpData.localViewIDs = patch.getLocalViewIDs();
 
-        // 从未重建的点进行了重建
+        // 之前没有被优化过的点
         if (refV->confImg->at(index) <= 0) {
             ++progress.filled;
         }
-        // 性能进行了提升
+        // 优化后性能有了提升的点
         if (refV->confImg->at(index) < tmpData.confidence) {
             refV->depthImg->at(index) = tmpData.depth;
             refV->normalImg->at(index, 0) = normal[0];
@@ -463,33 +459,34 @@ DMRecon::processQueue()
             // left
             tmpData.x = x - 1; tmpData.y = y;
             index = tmpData.y * this->width + tmpData.x;
+
+            /***
+             * 如果优化后的pixel confidence比neighboring pixel 的confidence好0.05以上， 那么将该pixel的初始化变量赋给
+             * neighboring 像素继续进行优化，交替进行指导neigboring pixels的confidence小于一定的值
+             */
             if (refV->confImg->at(index) < tmpData.confidence - 0.05f ||
-                refV->confImg->at(index) == 0.f)
-            {
+                refV->confImg->at(index) == 0.f){
                 prQueue.push(tmpData);
             }
             // right
             tmpData.x = x + 1; tmpData.y = y;
             index = tmpData.y * this->width + tmpData.x;
             if (refV->confImg->at(index) < tmpData.confidence - 0.05f ||
-                refV->confImg->at(index) == 0.f)
-            {
+                refV->confImg->at(index) == 0.f){
                 prQueue.push(tmpData);
             }
             // top
             tmpData.x = x; tmpData.y = y - 1;
             index = tmpData.y * this->width + tmpData.x;
             if (refV->confImg->at(index) < tmpData.confidence - 0.05f ||
-                refV->confImg->at(index) == 0.f)
-            {
+                refV->confImg->at(index) == 0.f){
                 prQueue.push(tmpData);
             }
             // bottom
             tmpData.x = x; tmpData.y = y + 1;
             index = tmpData.y * this->width + tmpData.x;
             if (refV->confImg->at(index) < tmpData.confidence - 0.05f ||
-                refV->confImg->at(index) == 0.f)
-            {
+                refV->confImg->at(index) == 0.f){
                 prQueue.push(tmpData);
             }
         }

@@ -25,11 +25,15 @@
 
 MVS_NAMESPACE_BEGIN
 
-struct ImagePyramidLevel
-{
+struct ImagePyramidLevel{
+
+    // 图像宽和高
     int width, height;
+    // 图像数据
     core::ByteImage::ConstPtr image;
+    // 投影矩阵
     math::Matrix3f proj;
+    // 逆投影矩阵
     math::Matrix3f invproj;
 
     ImagePyramidLevel();

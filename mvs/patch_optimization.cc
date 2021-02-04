@@ -55,10 +55,11 @@ PatchOptimization::PatchOptimization(
 
     // patch 宽度的一半
     int halfFW = (int) settings.filterWidth / 2;
+
     // 像素权重
     pixel_weight.resize(sampler->getNrSamples());
 
-    // 像素权重初始化
+    // 像素权重初始化，初始时每个值设定为1
     for (int j = -halfFW; j <= halfFW; ++j)
         for (int i = -halfFW; i <= halfFW; ++i) {
             ii[count] = i;
@@ -67,7 +68,7 @@ PatchOptimization::PatchOptimization(
             ++count;
         }
 
-    // 进行局部视角选择
+    /**进行局部视角选择**/
     localVS.performVS();
     if (!localVS.success) {
         status.optiSuccess = false;
@@ -80,34 +81,35 @@ PatchOptimization::PatchOptimization(
         colorScale[idx] = math::Vec3f(1.f / masterMeanCol);
     }
 
-    // 计算每个视角的颜色尺度 ??????????????????
+    /**计算每个视角的颜色尺度**/
     computeColorScale();
 }
 
-void
-PatchOptimization::computeColorScale()
-{
+void PatchOptimization::computeColorScale(){
+
     if (!settings.useColorScale)
         return;
-    // 参考视角中的样本点的颜色
+
+    // refView 中的样本点的颜色
     Samples const & mCol = sampler->getMasterColorSamples();
-    // 局部视角
+
+    // 获取已经被选择的视角的索引
     IndexSet const & neighIDs = localVS.getSelectedIDs();
     IndexSet::const_iterator id;
 
-    // 对于每一个局部视角
+    /**遍历每一个邻域的每一个视角**/
     for (id = neighIDs.begin(); id != neighIDs.end(); ++id) {
         // just copied from old mvs:
-        // 获取邻域样本点的颜色值
+        /**获取样本点的颜色值**/
         Samples const & nCol = sampler->getNeighColorSamples(*id);
         if (!sampler->success[*id])
             return;
-        // 对于每一个颜色通道
+        /**对于每一个颜色通道**/
         for (int c = 0; c < 3; ++c) {
             float ab = 0.f;
             float aa = 0.f;
-            // 每个样本点
             for (std::size_t i = 0; i < mCol.size(); ++i) {
+                // todo 每个样本点 s = sum[（cm -cn* s) * cn]/ sum[cn*cn] 是否有问题??
                 ab += (mCol[i][c] - nCol[i][c] * colorScale[*id][c]) * nCol[i][c];
                 aa += sqr(nCol[i][c]);
             }
@@ -122,13 +124,13 @@ PatchOptimization::computeColorScale()
     }
 }
 
-float
-PatchOptimization::computeConfidence()
-{
+float PatchOptimization::computeConfidence(){
+
     SingleView::Ptr refV = views[settings.refViewNr];
     if (!status.converged)
         return 0.f;
 
+    /**1.0 考虑ref View 与 local neighbors的NCC均值**/
     /* Compute mean NCC between reference view and local neighbors,
        where each NCC has to be higher than acceptance NCC */
     float meanNCC = 0.f;
@@ -138,10 +140,9 @@ PatchOptimization::computeConfidence()
         meanNCC += sampler->getFastNCC(*id);
     }
     meanNCC /= neighIDs.size();
+    float score = (meanNCC - settings.acceptNCC) / (1.f - settings.acceptNCC);
 
-    float score = (meanNCC - settings.acceptNCC) /
-                  (1.f - settings.acceptNCC);
-
+    /**2.0 考虑patch的法向量和中心点视线之间的夹角**/
     /* Compute angle between estimated surface normal and view direction
        and weight current score with dot product */
     math::Vec3f viewDir(refV->viewRayScaled(midx, midy));
@@ -178,9 +179,9 @@ PatchOptimization::derivNorm()
     return norm;
 }
 
-void
-PatchOptimization::doAutoOptimization()
-{
+void PatchOptimization::doAutoOptimization(){
+
+    /**如果局部视角选择失败或者初始化失败或者color scale计算失败**/
     if (!localVS.success || !status.optiSuccess) {
         return;
     }
@@ -194,8 +195,8 @@ PatchOptimization::doAutoOptimization()
     bool viewRemoved = false;
     bool converged = false;
     while (status.iterationCount < settings.maxIterations &&
-        localVS.success && status.optiSuccess)
-    {
+        localVS.success && status.optiSuccess){
+
         // 邻域视角
         IndexSet const & neighIDs = localVS.getSelectedIDs();
         IndexSet::const_iterator id;
@@ -230,7 +231,7 @@ PatchOptimization::doAutoOptimization()
             // 快速计算NCC
             float ncc = sampler->getFastNCC(*id);
 
-            // 如果当前ncc的值比前一次迭代ncc的值大于一定的阈值，则未收敛
+            // 有一个视角当前ncc的值比前一次迭代ncc的值大于一定的阈值，则未收敛
             if (std::abs(ncc - oldNCC[count]) > settings.minRefineDiff)
                 converged = false;
 
@@ -244,6 +245,7 @@ PatchOptimization::doAutoOptimization()
 
         // 如果有视角移除，重新进行局部视角选择和重新计算颜色尺度
         if (viewRemoved) {
+            /*去除toBeReplaced视角，重新进行局部视角选择*/
             localVS.replaceViews(toBeReplaced);
             if (!localVS.success) {
                 return;
@@ -262,8 +264,7 @@ PatchOptimization::doAutoOptimization()
     }
 }
 
-float
-PatchOptimization::objFunValue()
+float PatchOptimization::objFunValue()
 {
     Samples const & mCol = sampler->getMasterColorSamples();
     std::size_t nrSamples = sampler->getNrSamples();
@@ -282,9 +283,8 @@ PatchOptimization::objFunValue()
     return obj;
 }
 
-void
-PatchOptimization::optimizeDepthOnly()
-{
+void PatchOptimization::optimizeDepthOnly(){
+
     float numerator = 0.f;
     float denom = 0.f;
     // 参考视角的样本颜色值
@@ -296,8 +296,8 @@ PatchOptimization::optimizeDepthOnly()
     std::size_t nrSamples = sampler->getNrSamples();
 
     // 对于每一个邻域视角
-    for (id = neighIDs.begin(); id != neighIDs.end(); ++id)
-    {
+    for (id = neighIDs.begin(); id != neighIDs.end(); ++id){
+
         // 计算邻域视角采样点的颜色和梯度
         Samples nCol, nDeriv;
         sampler->fastColAndDeriv(*id, nCol, nDeriv);
@@ -327,9 +327,8 @@ PatchOptimization::optimizeDepthOnly()
     }
 }
 
-void
-PatchOptimization::optimizeDepthAndNormal()
-{
+void PatchOptimization::optimizeDepthAndNormal(){
+
     if (!localVS.success) {
         return;
     }
@@ -343,8 +342,7 @@ PatchOptimization::optimizeDepthAndNormal()
     Samples const & mCol = sampler->getMasterColorSamples();
     IndexSet::const_iterator id;
     std::size_t row = 0;
-    for (id = neighIDs.begin(); id != neighIDs.end(); ++id)
-    {
+    for (id = neighIDs.begin(); id != neighIDs.end(); ++id){
         Samples nCol, nDeriv;
         sampler->fastColAndDeriv(*id, nCol, nDeriv);
         if (!sampler->success[*id]) {

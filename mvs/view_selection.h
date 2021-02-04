@@ -17,29 +17,40 @@
 
 MVS_NAMESPACE_BEGIN
 
-class ViewSelection
-{
+/**
+ * class for view selection
+ */
+class ViewSelection{
+
 public:
     typedef std::shared_ptr<ViewSelection> Ptr;
 
+    /**
+     * constructor
+     */
     ViewSelection();
+
+    /**
+     * constructor with settings
+     * @param settings
+     */
     ViewSelection(Settings const& settings);
 
 public:
     IndexSet const& getSelectedIDs() const;
 
 protected:
-    Settings const& settings;
-    std::vector<bool> available;
-    IndexSet selected;
+
+    Settings const& settings;     // 所有的参数
+    std::vector<bool> available;  // flag--用于指示视角是否可用，默认除了参考视角全部都是可用
+    IndexSet selected;           // 选择的视角的索引
 };
 
 
 inline
 ViewSelection::ViewSelection(Settings const& settings)
     :
-    settings(settings)
-{
+    settings(settings){
 }
 
 inline IndexSet const&

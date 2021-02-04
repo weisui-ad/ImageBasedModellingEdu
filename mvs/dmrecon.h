@@ -26,8 +26,8 @@
 MVS_NAMESPACE_BEGIN
 
 // 优先级队列
-struct QueueData
-{
+struct QueueData{
+
     // 像素坐标
     int x;
     int y;
@@ -77,14 +77,12 @@ private:
 /* ------------------------- Implementation ----------------------- */
 
 inline bool
-QueueData::operator< (const QueueData& rhs) const
-{
+QueueData::operator< (const QueueData& rhs) const{
     return (confidence < rhs.confidence);
 }
 
 inline const Progress&
-DMRecon::getProgress() const
-{
+DMRecon::getProgress() const{
     return progress;
 }
 

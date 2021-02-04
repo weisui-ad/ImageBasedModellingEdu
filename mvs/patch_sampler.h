@@ -21,10 +21,10 @@
 MVS_NAMESPACE_BEGIN
 
 /**
-* PatchSampler 是采样给定的三维点，采样patch上的点
+* PatchSampler 是采样给定的三维点以及对应的patch，采样patch上的点
 */
-class PatchSampler
-{
+class PatchSampler{
+
 public:
     typedef std::shared_ptr<PatchSampler> Ptr;
 
@@ -36,11 +36,11 @@ public:
     PatchSampler(
         std::vector<SingleView::Ptr> const& _views,
         Settings const& _settings,
-        int _x,          // pixel position
+        int _x,          // pixel 在图像中的
         int _y,
-        float _depth,
-        float _dzI,
-        float _dzJ);
+        float _depth,    // 中心点处的depth
+        float _dzI,      // hs(s,t)
+        float _dzJ);     // ht(s,t)
 
     /** Smart pointer PatchSampler constructor. */
     static PatchSampler::Ptr create(std::vector<SingleView::Ptr> const& views,
@@ -85,7 +85,12 @@ public:
     /**是否采样成功*/
     bool succeeded(std::size_t v) const;
 
-    /**更新深度值和法向量*/
+    /**
+     * 根据新的newDepth, newDzI, newDzJ对patch进行更新， patch的位置和法向量都会发生变化
+     * @param newDepth -- h(s,t)
+     * @param newDzI -- hs(s,t)
+     * @param newDzJ -- ht(s,t)
+     */
     void update(float newDepth, float newDzI, float newDzJ);
 
     /**  */
@@ -123,24 +128,36 @@ private:
     std::vector<math::Vec3f> masterViewDirs;
 
     /** 3d position of patch points */
-    Samples patchPoints;
+    Samples patchPoints;  // patch上所有的点对应的3D点坐标
 
     /** pixel colors of patch in master image */
     Samples masterColorSamples;
 
     /** samples in neighbor images */
-    std::map<std::size_t, Samples> neighColorSamples;
-    std::map<std::size_t, Samples> neighDerivSamples;
-    std::map<std::size_t, PixelCoords> neighPosSamples;
+    std::map<std::size_t, Samples> neighColorSamples;    // 所有局部视角中的颜色
+    std::map<std::size_t, Samples> neighDerivSamples;    // 所有局部视角的中的颜色梯度
+    std::map<std::size_t, PixelCoords> neighPosSamples;  // 所有局部视角中的像素坐标
 
     std::map<std::size_t, float> stepSize;
 
+    /**
+     * 计算patch中所有点的3D坐标
+     * */
     void computePatchPoints();
+
+    /**
+     * 计算所有采样点在refView上的颜色值
+     * */
     void computeMasterSamples();
+
+    /**
+     * 计算patch中所有的点在第v个视角中的颜色值
+     * @param v
+     */
     void computeNeighColorSamples(std::size_t v);
 
 public:
-    std::vector<bool> success;
+    std::vector<bool> success;   // 在相邻视角上是否成功
 };
 
 inline PatchSampler::Ptr
@@ -150,47 +167,40 @@ PatchSampler::create(std::vector<SingleView::Ptr> const& views
         , int y
         , float depth
         , float dzI
-        , float dzJ)
-{
+        , float dzJ){
     return PatchSampler::Ptr(new PatchSampler
         (views, settings, x, y, depth, dzI, dzJ));
 }
 
 inline Samples const&
-PatchSampler::getMasterColorSamples() const
-{
+PatchSampler::getMasterColorSamples() const{
     return masterColorSamples;
 }
 
 inline Samples const&
-PatchSampler::getNeighColorSamples(std::size_t v)
-{
+PatchSampler::getNeighColorSamples(std::size_t v){
     if (neighColorSamples[v].empty())
         computeNeighColorSamples(v);
     return neighColorSamples[v];
 }
 
 inline float
-PatchSampler::getMasterMeanColor() const
-{
+PatchSampler::getMasterMeanColor() const{
     return masterMeanCol;
 }
 
 inline math::Vec3f const&
-PatchSampler::getMidWorldPoint() const
-{
+PatchSampler::getMidWorldPoint() const{
     return patchPoints[nrSamples/2];
 }
 
 inline std::size_t
-PatchSampler::getNrSamples() const
-{
+PatchSampler::getNrSamples() const{
     return nrSamples;
 }
 
 inline float
-PatchSampler::varInMasterPatch()
-{
+PatchSampler::varInMasterPatch(){
     return sqrDevX / (3.f * (float) nrSamples);
 }
 

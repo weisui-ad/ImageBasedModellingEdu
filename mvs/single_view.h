@@ -25,15 +25,14 @@
 
 MVS_NAMESPACE_BEGIN
 
-class SingleView
-{
+class SingleView{
+
 public:
     typedef std::shared_ptr<SingleView> Ptr;
     typedef std::shared_ptr<SingleView const> ConstPtr;
 
 public:
-    static Ptr create (core::Scene::Ptr scene, core::View::Ptr view,
-        std::string const& embedding);
+    static Ptr create (core::Scene::Ptr scene, core::View::Ptr view,std::string const& embedding);
     ~SingleView();
 
     void addFeature(std::size_t idx);
@@ -44,6 +43,8 @@ public:
     core::View::Ptr getMVEView() const;
 
     std::string createFileName(float scale) const;
+
+    /* z/f z--表示深度  f--表示焦距*/
     float footPrint(math::Vec3f const& point);
     float footPrintScaled(math::Vec3f const& point);
     math::Vec3f viewRay(int x, int y, int level) const;
@@ -59,21 +60,20 @@ public:
     std::size_t getViewID() const;
 
 public:
-    math::Vec3f camPos;
-    core::FloatImage::Ptr depthImg;
-    core::FloatImage::Ptr normalImg;
+    math::Vec3f camPos;                 // 相机在世界坐标系中的位置
+    core::FloatImage::Ptr depthImg;     // 深度图
+    core::FloatImage::Ptr normalImg;    // 法贴（法向量图）
     core::FloatImage::Ptr dzImg;
-    core::FloatImage::Ptr confImg;
+    core::FloatImage::Ptr confImg;      // 置信度图
 
 private:
     /** Constructor is private, use the create() method for instantiation. */
-    SingleView(core::Scene::Ptr _scene, core::View::Ptr _view,
-        std::string const& _embedding);
+    SingleView(core::Scene::Ptr _scene, core::View::Ptr _view,std::string const& _embedding);
 
 private:
-    math::Matrix4f worldToCam;
-    core::Scene::Ptr scene;
-    core::View::Ptr view;
+    math::Matrix4f worldToCam;  // 投影矩阵
+    core::Scene::Ptr scene;     //
+    core::View::Ptr view;       // 视角
     std::string embedding;
 
     // 特征点的索引
@@ -88,6 +88,7 @@ private:
 
     // 原始尺寸的图像尺度（不包含图像数据，仅包含相机内参数和图像尺寸）
     ImagePyramidLevel source_level;
+
     // 需要进行稠密重建的图像尺度（不包含图像数据，尽包含相机内参数和图像尺寸）
     ImagePyramidLevel target_level;
 
@@ -99,26 +100,22 @@ private:
 
 inline SingleView::Ptr
 SingleView::create (core::Scene::Ptr scene, core::View::Ptr view,
-    std::string const& embedding)
-{
+    std::string const& embedding){
     return Ptr(new SingleView(scene, view, embedding));
 }
 
 inline void
-SingleView::addFeature(std::size_t idx)
-{
+SingleView::addFeature(std::size_t idx){
     featInd.push_back(idx);
 }
 
 inline std::vector<std::size_t> const &
-SingleView::getFeatureIndices() const
-{
+SingleView::getFeatureIndices() const{
     return featInd;
 }
 
 inline int
-SingleView::clampLevel(int level) const
-{
+SingleView::clampLevel(int level) const{
     if (level < minLevel)
         return minLevel;
 
@@ -192,18 +189,19 @@ SingleView::worldToScreenScaled(math::Vec3f const& point)
 }
 
 inline math::Vec2f
-SingleView::worldToScreen(math::Vec3f const& point, int level)
-{
-    math::Vec3f cp(this->worldToCam.mult(point,1.f));
-    math::Vec3f sp = this->img_pyramid->at(level).proj * cp;
+SingleView::worldToScreen(math::Vec3f const& point, int level){
 
+    /**将世界坐标系中的点变换到相机坐标系中**/
+    math::Vec3f cp(this->worldToCam.mult(point,1.f));
+    /**利用第level层分辨率的投影矩阵进行投影**/
+    math::Vec3f sp = this->img_pyramid->at(level).proj * cp;
+    /**得到像素坐标**/
     math::Vec2f res(sp[0] / sp[2] - 0.5f, sp[1] / sp[2] - 0.5f);
     return res;
 }
 
 inline std::size_t
-SingleView::getViewID() const
-{
+SingleView::getViewID() const{
     return this->view->get_id();
 }
 

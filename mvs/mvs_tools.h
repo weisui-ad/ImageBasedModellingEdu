@@ -53,8 +53,7 @@ parallax(math::Vec3f p, mvs::SingleView::Ptr v1, mvs::SingleView::Ptr v2)
 }
 
 inline float
-parallaxToWeight(float p)
-{
+parallaxToWeight(float p){
     if (p < 0.f || p > 180.f) {
         std::cerr << "ERROR: invalid parallax value." << std::endl;
         return 0.f;
@@ -64,6 +63,7 @@ parallaxToWeight(float p)
         sigma = 5.f;
     else
         sigma = 15.f;
+
     float mean = 20.f;
     return exp(- sqr(p - mean) / (2 * sigma * sigma));
 }
