@@ -178,13 +178,12 @@ CameraInfo::fill_gl_projection (float* mat, float width, float height,
 
 void
 CameraInfo::fill_inverse_calibration (float* mat,
-    float width, float height) const
-{
+    float width, float height) const{
+
     float dim_aspect = width / height;
     float image_aspect = dim_aspect * this->paspect;
     float ax, ay;
-    if (image_aspect < 1.0f) /* Portrait. */
-    {
+    if (image_aspect < 1.0f) /* Portrait. */{
         ax = this->flen * height / this->paspect;
         ay = this->flen * height;
     }
