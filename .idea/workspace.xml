@@ -43,7 +43,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="08155804-328d-42e4-b20e-96f75a0af12d" name="Default Changelist" comment="add code for task4" />
+    <list default="true" id="08155804-328d-42e4-b20e-96f75a0af12d" name="Default Changelist" comment="add code for task4">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task2/task2-1_test_triangle.cc" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task2/task2-1_test_triangle.cc" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -76,14 +79,9 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="cf.first.check.clang-format" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="CMakeSettings" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
-  <component name="RunManager" selected="CMake Application.task1_test_math_basic">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="CMake Application.task2-1_test_triangle">
     <configuration name="class5_scene2pset_single_view" type="CMakeRunConfiguration" factoryName="Application" PROGRAM_PARAMS="./examples/data/sequence_scene ./examples/data/sequence_scene/points.ply 2 2" REDIRECT_INPUT="false" ELEVATE="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="class5_scene2pset_single_view" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ImageBasedModellingEdu" RUN_TARGET_NAME="class5_scene2pset_single_view">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -311,6 +309,9 @@
       <workItem from="1613491625655" duration="689000" />
       <workItem from="1613740107088" duration="2938000" />
       <workItem from="1614424643416" duration="1461000" />
+      <workItem from="1615791579169" duration="6501000" />
+      <workItem from="1615876910175" duration="3947000" />
+      <workItem from="1615897840389" duration="361000" />
     </task>
     <task id="LOCAL-00001" summary="Add all the basic library and the sample code for class1">
       <created>1610359674091</created>
@@ -460,26 +461,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/examples/task2/task2-2_test_p3p_kneip.cc</url>
-          <line>291</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/examples/task2/task2-2_test_p3p_kneip.cc</url>
-          <line>298</line>
-          <option name="timeStamp" value="9" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/examples/task2/task2-2_test_p3p_kneip.cc</url>
-          <line>310</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/examples/task2/task2-2_test_p3p_kneip.cc</url>
-          <line>317</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/sfm/bundler_incremental.cc</url>
           <line>128</line>
