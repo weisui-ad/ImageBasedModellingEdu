@@ -9,6 +9,8 @@
       <config projectName="ImageBasedModellingEdu" targetName="task6-1_surface_reconstruction" />
       <config projectName="ImageBasedModellingEdu" targetName="task2-5_test_ba" />
       <config projectName="ImageBasedModellingEdu" targetName="sfm" />
+      <config projectName="ImageBasedModellingEdu" targetName="task6-2_meshclean" />
+      <config projectName="ImageBasedModellingEdu" targetName="task8_2_VBO" />
       <config projectName="ImageBasedModellingEdu" targetName="task4_test_fundamental_8_point" />
       <config projectName="ImageBasedModellingEdu" targetName="task2-4_test_jacobian" />
       <config projectName="ImageBasedModellingEdu" targetName="task4-2_scene2pset_multi_views" />
@@ -26,13 +28,15 @@
       <config projectName="ImageBasedModellingEdu" targetName="task4-1_scene2pset_single_view" />
       <config projectName="ImageBasedModellingEdu" targetName="mrf" />
       <config projectName="ImageBasedModellingEdu" targetName="task2-2_test_p3p_ransac" />
-      <config projectName="ImageBasedModellingEdu" targetName="task7_2_texturing" />
       <config projectName="ImageBasedModellingEdu" targetName="task6_test_pose_from_fundamental" />
+      <config projectName="ImageBasedModellingEdu" targetName="task7_2_texturing" />
       <config projectName="ImageBasedModellingEdu" targetName="task4-1_dmrecon_single_view" />
       <config projectName="ImageBasedModellingEdu" targetName="surface" />
       <config projectName="ImageBasedModellingEdu" targetName="texturing" />
+      <config projectName="ImageBasedModellingEdu" targetName="task8_3_texturing" />
       <config projectName="ImageBasedModellingEdu" targetName="task5_test_fundamental_ransac" />
       <config projectName="ImageBasedModellingEdu" targetName="mvs" />
+      <config projectName="ImageBasedModellingEdu" targetName="task8_1_3d_shapes" />
       <config projectName="ImageBasedModellingEdu" targetName="task2-2_test_p3p_kneip" />
       <config projectName="ImageBasedModellingEdu" targetName="task2-1_test_triangle" />
     </generated>
@@ -45,7 +49,11 @@
   <component name="ChangeListManager">
     <list default="true" id="08155804-328d-42e4-b20e-96f75a0af12d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/task6/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task6/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task1/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task1/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task8/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task8/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task8/task8_2_VBO.cc" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task8/task8_2_VBO.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task8/task8_3_trackball.cc" beforeDir="false" afterPath="$PROJECT_DIR$/examples/task8/task8_3_texturing.cc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/examples/task8/task8_4_texturing.cc" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +64,13 @@
     <option name="formatViaClangd" value="false" />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -81,7 +96,12 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="CMakeSettings" />
   </component>
-  <component name="RunManager" selected="CMake Application.task6-2_meshclean">
+  <component name="RunManager" selected="CMake Application.task8_2_VBO">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -247,6 +267,21 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="task8_1_3d_shapes" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="task8_1_3d_shapes" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ImageBasedModellingEdu" RUN_TARGET_NAME="task8_1_3d_shapes">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="task8_2_VBO" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="task8_2_VBO" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ImageBasedModellingEdu" RUN_TARGET_NAME="task8_2_VBO">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="task8_3_texturing" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="task8_3_texturing" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ImageBasedModellingEdu" RUN_TARGET_NAME="task8_3_texturing">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="texturing" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="texturing" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -255,11 +290,6 @@
     <configuration name="util" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ImageBasedModellingEdu" TARGET_NAME="util" CONFIG_NAME="Debug">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="GradleAppRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" PASS_PARENT_ENVS_2="true">
-      <method v="2">
-        <option name="com.jetbrains.cidr.cpp.gradle.execution.GradleNativeBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <list>
@@ -285,6 +315,9 @@
       <item itemvalue="CMake Application.task6-2_meshclean" />
       <item itemvalue="CMake Application.task7_1_mesh_clean" />
       <item itemvalue="CMake Application.task7_2_texturing" />
+      <item itemvalue="CMake Application.task8_1_3d_shapes" />
+      <item itemvalue="CMake Application.task8_2_VBO" />
+      <item itemvalue="CMake Application.task8_3_texturing" />
       <item itemvalue="CMake Application.task5_dmrecon_single_view" />
       <item itemvalue="CMake Application.task2-2_test_p3p_ransac" />
       <item itemvalue="CMake Application.task2-3_test_lm_optimize" />
@@ -327,7 +360,13 @@
       <workItem from="1614424643416" duration="1461000" />
       <workItem from="1615040680766" duration="1258000" />
       <workItem from="1615696171351" duration="1132000" />
-      <workItem from="1615818047721" duration="822000" />
+      <workItem from="1615818047721" duration="945000" />
+      <workItem from="1616081470188" duration="1384000" />
+      <workItem from="1616405639884" duration="139000" />
+      <workItem from="1616429816717" duration="694000" />
+      <workItem from="1617615606931" duration="9562000" />
+      <workItem from="1617801107723" duration="331000" />
+      <workItem from="1618250334675" duration="8368000" />
     </task>
     <task id="LOCAL-00001" summary="Add all the basic library and the sample code for class1">
       <created>1610359674091</created>
@@ -462,7 +501,21 @@
       <option name="project" value="LOCAL" />
       <updated>1615696384798</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="add task6-2_meshclean">
+      <created>1615819417724</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1615819417724</updated>
+    </task>
+    <task id="LOCAL-00021" summary="add task-8">
+      <created>1617801132769</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1617801132769</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -496,7 +549,9 @@
     <MESSAGE value="add code for task6" />
     <MESSAGE value="add code for task7" />
     <MESSAGE value="change project name of task6" />
-    <option name="LAST_COMMIT_MESSAGE" value="change project name of task6" />
+    <MESSAGE value="add task6-2_meshclean" />
+    <MESSAGE value="add task-8" />
+    <option name="LAST_COMMIT_MESSAGE" value="add task-8" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

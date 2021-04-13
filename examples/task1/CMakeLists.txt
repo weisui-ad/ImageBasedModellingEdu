@@ -6,8 +6,7 @@ include_directories("../..")
 
 #test math basic
 set(MATH_BASIC_FILE
-        task1-1_test_math_basic.cc
-        )
+        task1-1_test_math_basic.cc)
 add_executable(task1_test_math_basic ${MATH_BASIC_FILE} )
 target_link_libraries(task1_test_math_basic  util core )
 

@@ -20,9 +20,6 @@ target_link_libraries(task8_1_3d_shapes ${OPENGL_gl_LIBRARY} ${GLUT_LIBRARY} ${G
 add_executable(task8_2_VBO  task8_2_VBO.cc)
 target_link_libraries(task8_2_VBO ${GLEW_LIBRARIES} ${OPENGL_gl_LIBRARY}  ${GLUT_LIBRARY}  glfw glut)
 
-#add_executable(task8_3_trackball  task8_3_trackball.cc)
-#target_link_libraries(task8_3_trackball ${OPENGL_gl_LIBRARY} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)
-#
-#add_executable(task8_4_texturing  task8_4_texturing.cc)
-#target_link_libraries(task8_4_texturing ${OPENGL_gl_LIBRARY} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)
+add_executable(task8_3_texturing  task8_3_texturing.cc)
+target_link_libraries(task8_3_texturing ${OPENGL_gl_LIBRARY} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)
 
