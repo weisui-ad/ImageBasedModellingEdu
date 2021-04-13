@@ -15,6 +15,7 @@
 #include <cstring>
 #include <cerrno>
 #include <cstdlib>
+#include <assert.h>
 
 #include "core/depthmap.h"
 #include "core/mesh_info.h"

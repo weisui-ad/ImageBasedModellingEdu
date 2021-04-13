@@ -3,47 +3,36 @@
 // Created by sway on 2021/3/11.
 //
 #include <iostream>
-#ifdef  __APPLE__
 #include <GL/glew.h>
+
+#ifdef  __APPLE__
 #include <GLUT/glut.h>
 
 #endif
-#ifdef __UNIX__
+#ifdef __linux__
 #include <GL/glut.h>  // GLUT, include glu.h and gl.h
+#include <GL/gl.h>
 #endif
 
 
-#define BUFFER_OFFSET(offset) ((char*) NULL + offset)
+#define BUFFER_OFFSET(offset) ((void*) NULL + offset)
 #define NumberOf(array) (sizeof(array)/sizeof(array[0]))
 
-typedef struct{
-    GLfloat x, y, z;
-} vec3;
-
-typedef struct{
-    vec3 xlate; /*Translation*/
-    GLfloat angle;
-    vec3 axis;
-} XForm;
-
-//enum {Cube, NumVAOs};
-GLuint VAO;
-XForm Xform[]={
-        {{-2.0, 0.0, 0.0}, 0.0, {0.0, 1.0, 0.0}}
-};
 GLfloat angle = 0.0;
+GLfloat trans =0.0;
 GLsizei n_elements;
+
+// 顶点数组索引
+GLuint VAO;
 
 // 定义属性对应的缓冲器
 enum {Vertices, Colors, Elements, NumVBOs};
 GLuint buffers[NumVBOs];
 
-
 void make_objects(){
 
     // 创建顶点数组对象
     glGenVertexArrays(1, &VAO);
-
     GLfloat cubeVerts[][3]={
             {-1.0, -1.0, -1.0},
             {-1.0, -1.0, 1.0},
@@ -103,7 +92,7 @@ void make_objects(){
 }
 void init(){
 
-
+    glewInit();  // very important, without this statement causes segment error!!
     glClearColor(0.0, 0.0, 0.0, 0.0);
     glShadeModel(GL_FLAT);  // 平滑模式
 
@@ -114,17 +103,19 @@ void init(){
 void display(){
 
     // 清除深度缓冲器和颜色缓冲器
-    glClear(GL_COLOR_BUFFER_BIT || GL_DEPTH_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glMatrixMode(GL_MODELVIEW);     // To operate on model-view matrix
+    // Render a color-cube consisting of 6 quads with different colors
+    glLoadIdentity();
+    glTranslatef(1.5f, trans, -7.0f);  // Move right and into the screen
+    glRotatef(angle, 0, 1.0, 0.0);// Reset the model-view matrix
 
     // 3种不同的模式，分别将多边形渲染成点，线和填充的模式
-    // glPolygonMode(GL_FRONT_AND_BACK, GL_POINTS);
-    //  glPolygonMode(GL_FRONT_AND_BACK, GL_POINTS);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-    glPushMatrix();
-        glBindVertexArray(VAO);
-        glDrawElements(GL_QUADS, n_elements, GL_UNSIGNED_BYTE, BUFFER_OFFSET(0));
-    glPopMatrix();
+    glPolygonMode(GL_FRONT_AND_BACK, GL_POINTS);
+    // glPolygonMode(GL_FRONT_AND_BACK, GL_LINES);
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+    glBindVertexArray(VAO);
+    glDrawElements(GL_QUADS, n_elements, GL_UNSIGNED_BYTE, BUFFER_OFFSET(0));
 
     glutSwapBuffers();
 }
@@ -144,9 +135,38 @@ void reshape(int w, int h){
     gluLookAt(0.0, 0.0, 5.0, 0.0, 0.0, 0.0, 0.0, 1.0, 0.0);
 }
 
+void spinRotate(void){
+    angle = angle +2.0;
+    if (angle > 360.0) angle-=360.0;
+    if(angle<-360) angle += 360.0;
+    glutPostRedisplay();
+}
+
+void spinTrans(void){
+    trans +=0.1;
+    glutPostRedisplay();
+}
+
 void keyboard(unsigned char key, int x, int y){
     switch (key) {
+        case 'a':
+            angle+=1.0;
+            glutPostRedisplay();
+            break;
         case 'd':
+            angle-=1.0;
+            glutPostRedisplay();
+            break;
+        case 'q':
+            glutIdleFunc(NULL);
+            glutPostRedisplay();
+            break;
+        case 'w':
+            trans += 0.05;
+            glutPostRedisplay();
+            break;
+        case 's':
+            trans -= 0.05;
             glutPostRedisplay();
             break;
         default:
@@ -155,21 +175,6 @@ void keyboard(unsigned char key, int x, int y){
     }
 }
 
-void spinDisplay(void){
-    angle = angle +2.0;
-    if (angle > 360.0) angle =  angle -360.0;
-    glutPostOverlayRedisplay();
-}
-
-void mouse (int button, int state, int x, int y){
-    switch (button) {
-        case GLUT_LEFT_BUTTON:
-            if(state == GLUT_DOWN){
-                glutIdleFunc(spinDisplay);
-            }
-            break;
-    }
-}
 int main(int argc, char*argv[]){
 
     glutInit(&argc, argv);
