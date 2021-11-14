@@ -21,6 +21,7 @@
 #include "sfm/extract_focal_length.h"
 
 #include "sfm/triangulate.h"
+#include <cassert>
 
 #define MAX_PIXELS 1000000
 

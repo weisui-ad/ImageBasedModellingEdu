@@ -18,6 +18,7 @@
 #include "sfm/fundamental.h"
 #include "sfm/correspondence.h"
 #include "math/matrix_svd.h"
+#include <cassert>
 
 typedef math::Matrix<double, 3, 3> FundamentalMatrix;
 
@@ -38,18 +39,10 @@ int  calc_ransac_iterations (double p,
                            int K,
                            double z = 0.99){
 
-    /** TODO HERE
-     * Coding here**/
-    return 0;
-
-
-    /** Reference
     double prob_all_good = math::fastpow(p, K);
     double num_iterations = std::log(1.0 - z)
                             / std::log(1.0 - prob_all_good);
     return static_cast<int>(math::round(num_iterations));
-     */
-
 }
 
 /**
@@ -170,19 +163,12 @@ std::vector<int> find_inliers(sfm::Correspondences2D2D const & matches
 
     std::vector<int> inliers;
 
-    /**
-     * TODO HERE
-     *
-     * Coding here **/
-
-    /** Reference
     for(int i=0; i< matches.size(); i++){
         double error = calc_sampson_distance(F, matches[i]);
         if(error< squared_thresh){
             inliers.push_back(i);
         }
     }
-     **/
     return inliers;
 }
 
@@ -261,10 +247,10 @@ int main(int argc, char *argv[]){
 
         if(inlier_indices.size()> best_inliers.size()){
 
-//            std::cout << "RANSAC-F: Iteration " << i
-//                      << ", inliers " << inlier_indices.size() << " ("
-//                      << (100.0 * inlier_indices.size() / corr_all.size())
-//                      << "%)" << std::endl;
+            std::cout << "RANSAC-F: Iteration " << i
+                      << ", inliers " << inlier_indices.size() << " ("
+                      << (100.0 * inlier_indices.size() / corr_all.size())
+                      << "%)" << std::endl;
             best_inliers.swap(inlier_indices);
         }
     }
